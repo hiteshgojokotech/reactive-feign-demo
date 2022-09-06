@@ -28,12 +28,6 @@ public class UserHandler {
      */
     public Mono<ServerResponse> getAll(ServerRequest request) {
         // fetch all customers from repository
-    	customerClient.streamGet(request.exchange())
-    	.subscribe(data-> {
-    		System.out.println(data.getBody()); 
-    		
-    	});
-    	
         return customerClient.streamGet(request.exchange())
                 .flatMap(Util::responseEntityToServerResponse);
     }

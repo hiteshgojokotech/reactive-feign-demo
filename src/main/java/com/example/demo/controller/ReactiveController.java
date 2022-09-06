@@ -20,10 +20,6 @@ public class ReactiveController {
 	
 	@GetMapping("/api/data")
 	public Mono<ResponseEntity<Flux<Customer>>> getCustomer(ServerWebExchange exchanges){
-		 customerClient.streamGet(exchanges)
-				.subscribe(data -> {
-					System.out.println(data.getBody()); 
-				});
 		return customerClient.streamGet(exchanges);
 	}
 }
